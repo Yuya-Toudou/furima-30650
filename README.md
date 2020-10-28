@@ -34,8 +34,8 @@
 
 ### Association
 
-- belong_to :user
-- has_one   :buys
+- belongs_to :user
+- has_one    :buy
 
 ## buys テーブル
 
@@ -46,9 +46,9 @@
 
 ### Association
 
-- belong_to :items
-- belong_to :user
-- has_one   :delivery_destinations
+- belongs_to :item
+- belongs_to :user
+- has_one    :delivery_destination
 
 ## delivery_destinations テーブル
 
@@ -64,4 +64,4 @@
 
 ### Association
 
-- belong_to :buys
+- belongs_to :buy
