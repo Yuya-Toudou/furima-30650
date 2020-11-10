@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
   belongs_to_active_hash :postage_pay
-  belongs_to_active_hash :prefectures
+  belongs_to_active_hash :prefecture
   belongs_to_active_hash :posting_date
 
   with_options presence: true do
@@ -21,5 +21,10 @@ class Item < ApplicationRecord
     validates :prefectures_id
     validates :posting_date_id
   end
+
   validate :image_presence
+  
+  def image_presence
+    errors.add(:image, 'must be attached') unless image.attached?
+  end
 end
