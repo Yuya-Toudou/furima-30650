@@ -22,6 +22,5 @@ class User < ApplicationRecord
           
          validates :birth_date, presence: true
         end
-
+        has_many :items
 end
-has_many :items
