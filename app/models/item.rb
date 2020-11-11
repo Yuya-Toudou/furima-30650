@@ -23,7 +23,7 @@ class Item < ApplicationRecord
   end
 
   validate :image_presence
-  
+
   def image_presence
     errors.add(:image, 'must be attached') unless image.attached?
   end
