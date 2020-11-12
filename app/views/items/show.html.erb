@@ -18,10 +18,6 @@
       <span class="item-price">
         ¥ <%= @item.price.to_s(:delimited) %>
       </span>
-      <span class="item-postage">
-        <%= '配送料負担' %>
-        <%= @item.postage_pay.name %>
-      </span>
     </div>
 
     <% if user_signed_in? && current_user.id == @item.user_id %>
