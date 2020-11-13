@@ -19,20 +19,18 @@ class BuysController < ApplicationController
     end
   end
 
-
-
   private
 
   def buy_params
     params.require(:buy_address).permit(:zip_code, :prefectures_id, :municipality, :address, :house_name, :phone_number).merge(item_id: params[:item_id], token: params[:token])
   end
-  
+
   def set_item
     @item = Item.find(params[:item_id])
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: buy_params[:token],
@@ -47,5 +45,4 @@ class BuysController < ApplicationController
   def buy_user
     redirect_to root_path if @item.user_id == current_user.id
   end
-
 end
