@@ -10,7 +10,6 @@ class BuyAddress
     validates :address
     validates :phone_number, numericality: true, length: { maximum: 11 }
     validates :item_id
-    validates :user_id
   end
 
   def save
