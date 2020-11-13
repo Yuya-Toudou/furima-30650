@@ -1,8 +1,9 @@
 class BuysController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
   before_action :set_item
   before_action :sold_out
-  before_action :buy_user
-  before_action :authenticate_user!
+  before_action :move_to_index
+  
 
   def index
     @buy = BuyAddress.new
@@ -42,7 +43,12 @@ class BuysController < ApplicationController
     redirect_to root_path unless @item.buy.nil?
   end
 
-  def buy_user
-    redirect_to root_path if @item.user_id == current_user.id
+  def move_to_index
+    if current_user.id == @item.user.id
+      redirect_to root_path
+    elsif Buy.find_by(item_id: params[:item_id])
+      redirect_to root_path
+    end
   end
+
 end
